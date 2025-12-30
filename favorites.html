@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Food Fling — Favorites</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="js/app.js"></script>
+
+</head>
+
+<body>
+  <div
+    class="app size-full max-w-md max-h-screen bg-[var(--bg)] flex flex-col rounded-2xl overflow-hidden shadow-[0_14px_40px_var(--shadow)]">
+
+    <header class="header flex align-center justify-between p-4 border-b-2 border-solid border-[var(--border)]">
+      <div class="app-title text-2xl font-bold">Favorite Meals</div>
+
+      <div class="header-controls pr-6">
+        <!-- <button id="filterBtn" class="pill">Search by Category</button> -->
+        <a href="index.html" class="pill ">Back</a>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="fav-top">
+        <div class="fav-title">Your Favorites</div>
+      </div>
+
+      <!-- Favorites grid (two per row) -->
+      <section class="fav-grid" id="favoritesGrid">
+
+      </section>
+    </main>
+
+  </div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/favorites.js"></script>
+</body>
+
+</html>

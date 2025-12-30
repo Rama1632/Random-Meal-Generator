@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Food Fling — Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-page min-h-screen flex justify-center px-2 py-4 font-sans text-[#222]">
+  <div
+    class="app size-full max-w-md max-h-screen bg-[var(--bg)] rounded-2xl shadow-lg flex flex-col overflow-hidden shadow-[0_14px_40px_var(--shadow)]">
+
+    <!-- HEADER -->
+    <header
+      class="header flex flex-col items-center justify-between p-4 border-b-2 border-solid border-[var(--border)] gap-2">
+      <div class="app-title font-font-['Barbariska_Rough'] text-2xl font-bold">
+        Food Spin
+      </div>
+
+      <div class="header-controls flex gap-2">
+        <!-- Search acts as "search/random" per your design -->
+        <select id="categorySelect" class="pill">
+          <option value="">Select Category</option>
+        </select>
+        <button id="searchBtn" class="pill">Search</button>
+
+        <!-- favorites page -->
+        <a href="favorites.html" class="pill">Favorites</a>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="content">
+      <div id="mealContainer"></div>
+    </main>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    // Get the meal card element
+    const mealCard = document.querySelector('.meal-card');
+    const seeRecipeBtn = document.getElementById('seeRecipeBtn');
+
+    let startY = 0;
+    let currentY = 0;
+    let isSwiping = false;
+
+    mealCard.addEventListener('touchstart', (e) => {
+      startY = e.touches[0].clientY;
+      mealCard.style.transition = ''; // remove transition during swipe
+    });
+
+    mealCard.addEventListener('touchmove', (e) => {
+      currentY = e.touches[0].clientY;
+      let diff = currentY - startY;
+      if (diff < 0) { // only swipe up
+        isSwiping = true;
+        mealCard.style.transform = `translateY(${diff}px)`; // move card with finger
+      }
+    });
+
+    mealCard.addEventListener('touchend', (e) => {
+      if (!isSwiping) return;
+      let diff = startY - currentY;
+
+      if (diff > 80) { // swipe up threshold
+        // animate card off screen
+        mealCard.style.transition = 'transform 0.3s ease-out';
+        mealCard.style.transform = 'translateY(-100%)';
+
+        // after animation, navigate to recipe page
+        setTimeout(() => {
+          seeRecipeBtn.click(); // simulate clicking "See Recipe"
+        }, 300);
+      } else {
+        // not enough swipe, snap back
+        mealCard.style.transition = 'transform 0.3s ease-out';
+        mealCard.style.transform = 'translateY(0)';
+      }
+
+      // reset
+      isSwiping = false;
+      startY = 0;
+      currentY = 0;
+    });
+  </script>
+
+
+</body>
+
+</html>
