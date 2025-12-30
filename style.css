@@ -48,6 +48,38 @@ body{
   align-items:center;
 }
 
+
+body.home-page {
+  height: 100vh;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+/* App container should fill screen */
+.home-page .app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header stays fixed */
+.home-page .header {
+  flex-shrink: 0;
+}
+
+/* Main content fills remaining space */
+.home-page .content {
+  flex: 1;
+  overflow: hidden;
+}
+
+.home-page .meal-card {
+  position: relative;
+  transform: none !important;
+  transition: none !important;
+  touch-action: manipulation;
+}
+
 /* pill buttons */
 .pill {
   padding:6px 10px;
